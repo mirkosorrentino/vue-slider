@@ -14,17 +14,14 @@
     <div id="app">
 
         <div class="container">
-            <div class="slider-wrapper" tabindex="0">
+            <div class="slider-wrapper" tabindex="0" @keyup.up="showPrev" @keyup.down="showNext" @mouseover="stopAutoplay" @mouseleave="startAutoplay">
 
                 <div class="item">
                     <img :src="slides[activeImage].images" alt="Spiderman" />
                     <div class="text">
-                        <h3>Spiderman</h3>
+                        <h3>{{slides[activeImage].title}}</h3>
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit
-                            tempore aliquid deleniti aut
-                            veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum
-                            corporis.
+                           {{ slides[activeImage].text}}
                         </p>
                     </div>
                 </div>
@@ -32,7 +29,7 @@
                 <div class="thumbs">
                     <div class="prev" @click="showPrev"></div>
                     <div class="next" @click="showNext"></div>
-                    <div class="thumb" :class="index === activeImage ? 'active' : ''" v-for="(image,index) in slides">
+                    <div class="thumb" :class="index === activeImage ? 'active' : ''" v-for="(image,index) in slides" @click="handleThumbClick(index)">
                         <img :src="image.images" alt=""/>
                     </div>
                 </div>

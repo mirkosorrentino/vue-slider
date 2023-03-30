@@ -4,6 +4,7 @@ createApp ({
     data(){
         return {
             activeImage: 0,
+            autoplay: null,
             slides: [
                 {
                     images: 'img/01.webp',
@@ -35,6 +36,10 @@ createApp ({
         };
     },
 
+    mounted() {
+        this.autoplay = setInterval(this.showNext, 1000)
+    },
+
     methods: {
         showNext() {
             if (this.activeImage < this.slides.length - 1) {
@@ -50,6 +55,18 @@ createApp ({
             } else {
                 this.activeImage = this.slides.length - 1
             }
+        },
+
+        handleThumbClick(indexToShow) {
+            this.activeImage = indexToShow;
+        },
+
+        stopAutoplay () {
+            clearInterval(this.autoplay)
+        },
+
+        startAutoplay(){
+            this.autoplay = setInterval(this.showNext, 1000)
         }
     },
 }).mount("#app")
