@@ -35,7 +35,6 @@ createApp ({
             ],
         };
     },
-
     mounted() {
         this.autoplay = setInterval(this.showNext, 1000)
     },
